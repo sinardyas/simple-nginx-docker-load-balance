@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+    nginx:
+        image: nginx
+        container_name: nginx
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - ./nginx/conf.d:/etc/nginx/conf.d
+    node_first:
+        image: docker-nginx-example_node
+        container_name: node_first
+        ports: 
+            - "8080"
+        environment: 
+            - MESSAGE=First Instance
+    node_second:
+        image: docker-nginx-example_node
+        container_name: node_second
+        ports: 
+            - "8080"
+        environment: 
+            - MESSAGE=Second Instance
